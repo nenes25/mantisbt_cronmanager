@@ -1,0 +1,12 @@
+<?php
+$s_plugin_HhCronManager_title = 'Cron Manager';
+$s_plugin_HhCronManager_description = 'Manage cron tasks in one place';
+#Config Page
+$s_plugin_HhCronManager_config_title = 'Cron Manager';
+$s_plugin_HhCronManager_config_description = 'This plugin allows you to manage the cron of your module in a central place.<br />
+In order to make it work please add the folowing task in your crontab : <br /> * * * * * wget -q %s -o /dev/null -O /dev/null';
+$s_plugin_HhCronManager_config_list = 'Registered cron task';
+$s_plugin_HhCronManager_config_list_no_tasks = 'No tasks are registered yet, to check how it works please check <a href="%s">%s</a>';
+$s_plugin_HhCronManager_config_cron_code = 'Code';
+$s_plugin_HhCronManager_config_cron_frequency = 'Frequency';
+$s_plugin_HhCronManager_config_cron_url = 'Url';

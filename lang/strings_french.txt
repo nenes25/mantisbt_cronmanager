@@ -1,0 +1,13 @@
+<?php
+$s_plugin_HhCronManage_title = 'Gestion des tâches planifiées';
+$s_plugin_HhCronManage_description = 'Plugin de gestion unifiée des tâches planifiées';
+$s_plugin_HhCronManager_menu_title = 'Gestion des tâches planifiées';
+#Config Page
+$s_plugin_HhCronManager_config_title = 'Gestion des tâches planifiées';
+$s_plugin_HhCronManager_config_description = 'Ce plugin vous permets de gérer les tâches planifiées de l\'ensemble des modules en un seul endroit.<br />
+Pour le configurer il faut ajouter la tâche planifiée suivante dans votre crontab : <br /> * * * * * wget -q %s -o /dev/null -O /dev/null';
+$s_plugin_HhCronManager_config_list = 'Tâches planifiées configurées';
+$s_plugin_HhCronManager_config_list_no_tasks = 'Aucune tâche planifiée pour l\'instant, merci de consulter l\'aide  <a href="%s">%s</a> pour en ajouter';
+$s_plugin_HhCronManager_config_cron_code = 'Code';
+$s_plugin_HhCronManager_config_cron_frequency = 'Fréquence';
+$s_plugin_HhCronManager_config_cron_url = 'Url';

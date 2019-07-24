@@ -1,0 +1,14 @@
+{
+    "name": "hhennes/hh-cron-manager",
+    "description": "Cron manager plugin for mantisbt",
+    "authors": [
+        {
+            "name": "Hervé Hennes",
+            "email": "contact@h-hennes.fr"
+        }
+    ],
+    "require": {
+        "adhocore/cron-expr": "^0.0.6",
+        "curl/curl": "^2.2"
+    }
+}
