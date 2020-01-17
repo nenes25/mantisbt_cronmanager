@@ -1,6 +1,7 @@
 <?php
 $s_plugin_HhCronManager_title = 'Cron Manager';
 $s_plugin_HhCronManager_description = 'Manage cron tasks in one place';
+$s_plugin_HhCronManager_menu_title = 'Manage cron tasks';
 #Config Page
 $s_plugin_HhCronManager_config_title = 'Cron Manager';
 $s_plugin_HhCronManager_config_description = 'This plugin allows you to manage the cron of your module in a central place.<br />
