@@ -60,18 +60,18 @@ $crons = event_signal('EVENT_PLUGIN_HHCRONMANAGER_COLLECT_CRON');
                         <tbody>
                             <?php if ( is_array($crons) && count($crons) > 0): ?>
                                 <?php
-                                foreach ( $crons as $plugin => $tasks){
-                                    #Get Plugin name from array key (ModuleNamePlugin)
-                                    $pluginName = str_ireplace('plugin', '', $plugin);
-                                    foreach ($tasks as $task): ?>
-                                    <tr>
-                                        <td><?php echo $pluginName; ?></td>
-                                        <td><?php echo $task['code'];?></td>
-                                        <td><?php echo $task['frequency'];?></td>
-                                        <td><?php echo plugin_page($task['url'],false,$plugin);?></td>
-                                    </tr>
+                                foreach ( $crons as $plugin => $function):
+                                    foreach ( $function as $tasks):
+                                        foreach ($tasks as $task): ?>
+                                        <tr>
+                                            <td><?php echo $task['plugin']; ?></td>
+                                            <td><?php echo $task['code'];?></td>
+                                            <td><?php echo $task['frequency'];?></td>
+                                            <td><?php echo plugin_page($task['url'],false,$task['plugin']);?></td>
+                                        </tr>
+                                        <?php endforeach; ?>
                                     <?php endforeach; ?>
-                                <?php } ?>
+                                <?php endforeach; ?>
                             <?php else:?>
                                 <tr>
                                     <td colspan="4" align="center">

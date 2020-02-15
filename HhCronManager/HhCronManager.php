@@ -58,7 +58,7 @@ class HhCronManagerPlugin extends MantisPlugin
     public function events()
     {
         return array(
-            'EVENT_PLUGIN_HHCRONMANAGER_COLLECT_CRON' => EVENT_TYPE_CHAIN
+            'EVENT_PLUGIN_HHCRONMANAGER_COLLECT_CRON' => EVENT_TYPE_DEFAULT
         );
     }
 
