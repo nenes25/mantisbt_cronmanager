@@ -27,29 +27,30 @@ $baseUrl = $protocol . $domainName;
 #Push cron module
 plugin_push_current('HhCronManager');
 
-#Get cron task from others plugins with a event ( EVENT_TYPE_CHAIN )
-#@Todo if necessary build a table to historize
+#Get cron task from others plugins with a event
 $crons = event_signal('EVENT_PLUGIN_HHCRONMANAGER_COLLECT_CRON');
 
-foreach ($crons as $plugin => $tasks) {
+foreach ($crons as $plugin => $function) {
 
-    #Get Plugin name from array key (ModuleNamePlugin)
-    $pluginName = str_ireplace('plugin', '', $plugin);
+    foreach ( $function as $tasks) {
 
-    foreach ($tasks as $task) {
-        try {
-            if (Expression::isDue($task['frequency'])) {
-                $curl = new Curl();
-                $t_url = $baseUrl . plugin_page($task['url'],false,$pluginName);
-                $curl->get($t_url);
-                if ($curl->error) {
-                    throw new Exception('Error: url ' . $t_url . ' is not valid');
+        foreach ($tasks as $task) {
+           echo "Evaluate task ".$task['code'].' for plugin '.$task['plugin'].'<br />';
+            try {
+                if (Expression::isDue($task['frequency'])) {
+                    echo "Running task ".$task['code'].' for plugin '.$task['plugin'].'<br />';
+                    $curl = new Curl();
+                    $t_url = $baseUrl . plugin_page($task['url'], false, $task['plugin']);
+                    $curl->get($t_url);
+                    if ($curl->error) {
+                        throw new Exception('Error: url ' . $t_url . ' is not valid');
+                    }
                 }
+            } catch (UnexpectedValueException $e) {
+                echo 'Invalid cron schedule ' . $task;
+            } catch (Exception $e) {
+                echo $e->getMessage();
             }
-        } catch (UnexpectedValueException $e) {
-            echo 'Invalid cron schedule ' . $task;
-        } catch (Exception $e) {
-            echo $e->getMessage();
         }
     }
 }

@@ -24,7 +24,7 @@ class HhCronManagerPlugin extends MantisPlugin
         $this->description = plugin_lang_get('description');
         $this->page = 'config.php';
 
-        $this->version = '0.0.1';
+        $this->version = '0.1.0';
         $this->requires = array(
             'MantisCore' => '2.0.0',
         );
@@ -40,7 +40,10 @@ class HhCronManagerPlugin extends MantisPlugin
      */
     public function config()
     {
-        return parent::config();
+        return [
+            'enable_heartbeat' => ON,
+            'enable_debug' => OFF,
+        ];
     }
 
     /**
@@ -51,6 +54,7 @@ class HhCronManagerPlugin extends MantisPlugin
     {
         $t_hooks = array(
             'EVENT_MENU_MAIN' => 'main_menu',
+            'EVENT_PLUGIN_HHCRONMANAGER_COLLECT_CRON' => 'collect_cron'
         );
         return $t_hooks;
     }
@@ -64,6 +68,7 @@ class HhCronManagerPlugin extends MantisPlugin
 
     /**
      * plugin schema
+     * @todo for next version
      * @return array
      */
    /* function schema()
@@ -108,5 +113,25 @@ class HhCronManagerPlugin extends MantisPlugin
                 'icon' => 'fa-info'
             ),
         );
+    }
+
+    /**
+     * Executed by module HhCronManager when collecting plugins cron tasks
+     * @param string $eventName
+     * @return array
+     */
+    public function collect_cron($eventName)
+    {
+        if ( plugin_config_get('enable_heartbeat') === ON ) {
+            return [
+                [
+                    'plugin' => get_class($this),
+                    'code' => get_class($this) . '_heartbeat',#unique code
+                    'frequency' => '* * * * * *',#cron expression
+                    'description' => plugin_lang_get('enable_heartbeat_description'),
+                    'url' => 'heartbeat',#plugin page name
+                ],
+            ];
+        }
     }
 }

@@ -6,8 +6,17 @@ $s_plugin_HhCronManager_menu_title = 'Gestion des tâches planifiées';
 $s_plugin_HhCronManager_config_title = 'Gestion des tâches planifiées';
 $s_plugin_HhCronManager_config_description = 'Ce plugin vous permets de gérer les tâches planifiées de l\'ensemble des modules en un seul endroit.<br />
 Pour le configurer il faut ajouter la tâche planifiée suivante dans votre crontab : <br /> * * * * * wget -q %s -o /dev/null -O /dev/null';
+$s_plugin_HhCronManager_config_plugin = "Configurer le plugin";
+$s_plugin_HhCronManager_enable_heartbeat = "Activer la tâche cron de contrôle";
+$s_plugin_HhCronManager_enable_heartbeat_description = "Active une tâche par défaut pour vérifier que les crons tournent correctement";
+$s_plugin_HhCronManager_enable_debug = "Activer le mode debug";
+$s_plugin_HhCronManager_enable_debug_description = "Affiche des messages d'information dans le fichier de log %s";
+$s_plugin_HhCronManager_off = 'Non';
+$s_plugin_HhCronManager_on = 'Oui';
+$s_plugin_HhCronManager_save = 'Sauvegarder';
 $s_plugin_HhCronManager_config_list = 'Tâches planifiées configurées';
 $s_plugin_HhCronManager_config_list_no_tasks = 'Aucune tâche planifiée pour l\'instant, merci de consulter l\'aide  <a href="%s">%s</a> pour en ajouter';
 $s_plugin_HhCronManager_config_cron_code = 'Code';
+$s_plugin_HhCronManager_config_cron_description = 'Description';
 $s_plugin_HhCronManager_config_cron_frequency = 'Fréquence';
 $s_plugin_HhCronManager_config_cron_url = 'Url';
