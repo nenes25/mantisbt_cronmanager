@@ -18,15 +18,15 @@ form_security_validate(plugin_get_current() . '_config');
 auth_reauthenticate();
 access_ensure_global_level(config_get('manage_plugin_threshold'));
 
-$f_change_heartbeat = gpc_get_int('enable_heartbeat');
-$f_change_debug = gpc_get_int('enable_debug');
+$f_change_heartbeat = gpc_get_int(HhCronManagerPlugin::CONFIGURATION_KEY_ENABLE_HEARTBEAT);
+$f_change_debug = gpc_get_int(HhCronManagerPlugin::CONFIGURATION_KEY_ENABLE_DEBUG);
 
-if (plugin_config_get('enable_heartbeat') != $f_change_heartbeat) {
-    plugin_config_set('enable_heartbeat', $f_change_heartbeat);
+if (plugin_config_get(HhCronManagerPlugin::CONFIGURATION_KEY_ENABLE_HEARTBEAT) != $f_change_heartbeat) {
+    plugin_config_set(HhCronManagerPlugin::CONFIGURATION_KEY_ENABLE_HEARTBEAT, $f_change_heartbeat);
 }
 
-if (plugin_config_get('enable_debug') != $f_change_debug) {
-    plugin_config_set('enable_debug', $f_change_debug);
+if (plugin_config_get(HhCronManagerPlugin::CONFIGURATION_KEY_ENABLE_DEBUG) != $f_change_debug) {
+    plugin_config_set(HhCronManagerPlugin::CONFIGURATION_KEY_ENABLE_DEBUG, $f_change_debug);
 }
 
 print_successful_redirect(plugin_page('config', true));

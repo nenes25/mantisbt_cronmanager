@@ -15,6 +15,13 @@
 
 class HhCronManagerPlugin extends MantisPlugin
 {
+
+    /** @var string Configuration key to enable cron heartbeat */
+    const CONFIGURATION_KEY_ENABLE_HEARTBEAT = 'enable_heartbeat';
+
+    /** @var string Configuration key to enable debug */
+    const CONFIGURATION_KEY_ENABLE_DEBUG = 'enable_debug';
+
     /**
      * Register Plugin
      */
@@ -41,8 +48,8 @@ class HhCronManagerPlugin extends MantisPlugin
     public function config()
     {
         return [
-            'enable_heartbeat' => ON,
-            'enable_debug' => OFF,
+            self::CONFIGURATION_KEY_ENABLE_HEARTBEAT => ON,
+            self::CONFIGURATION_KEY_ENABLE_DEBUG => OFF,
         ];
     }
 
@@ -68,29 +75,29 @@ class HhCronManagerPlugin extends MantisPlugin
 
     /**
      * plugin schema
-     * @todo for next version
      * @return array
+     * @todo for next version
      */
-   /* function schema()
-    {
-        return array(
-            array('CreateTableSQL',
-                array(plugin_table('cron_manager_task'), "
-	 	 		cron_id		I		NOTNULL UNSIGNED PRIMARY,
-	 	 		cron_code C(100)  NOT NULL,
-	 	 		cron_description C(250) NOT NULL,
-	 	 		hour C(10) NOT NULL,
-	 	 		day C(10) NOT NULL,
-	 	 		month C(10) NOT NULL,
-	 	 		day_of_week C(10) NOT NULL,
-	 	 		active I NOTNULL UNSIGNED,
-	 	 		created_at T		NOTNULL,
-	 	 		last_run T		NOTNULL,
-	 	 	    ",
-                    array('mysql' => 'ENGINE=MyISAM DEFAULT CHARSET=utf8'))
-            ),
-        );
-    }*/
+    /* function schema()
+     {
+         return array(
+             array('CreateTableSQL',
+                 array(plugin_table('cron_manager_task'), "
+                   cron_id		I		NOTNULL UNSIGNED PRIMARY,
+                   cron_code C(100)  NOT NULL,
+                   cron_description C(250) NOT NULL,
+                   hour C(10) NOT NULL,
+                   day C(10) NOT NULL,
+                   month C(10) NOT NULL,
+                   day_of_week C(10) NOT NULL,
+                   active I NOTNULL UNSIGNED,
+                   created_at T		NOTNULL,
+                   last_run T		NOTNULL,
+                   ",
+                     array('mysql' => 'ENGINE=MyISAM DEFAULT CHARSET=utf8'))
+             ),
+         );
+     }*/
 
     /**
      * @return bool
@@ -122,7 +129,7 @@ class HhCronManagerPlugin extends MantisPlugin
      */
     public function collect_cron($eventName)
     {
-        if ( plugin_config_get('enable_heartbeat') === ON ) {
+        if (plugin_config_get(self::CONFIGURATION_KEY_ENABLE_HEARTBEAT ) === ON) {
             return [
                 [
                     'plugin' => get_class($this),

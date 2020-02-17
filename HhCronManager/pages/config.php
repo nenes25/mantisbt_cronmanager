@@ -24,6 +24,8 @@ $baseUrl = $protocol . $domainName;
 $helpUrl = "https://www.github.com";
 $crons = event_signal('EVENT_PLUGIN_HHCRONMANAGER_COLLECT_CRON');
 $logFile = dirname(__FILE__) . '/../logs/debug.log';
+$enableHeartBeat = HhCronManagerPlugin::CONFIGURATION_KEY_ENABLE_HEARTBEAT;
+$enableDebug = HhCronManagerPlugin::CONFIGURATION_KEY_ENABLE_DEBUG;
 ?>
     <div class="col-md-12 col-xs-12">
         <div class="space-10"></div>
@@ -83,13 +85,13 @@ $logFile = dirname(__FILE__) . '/../logs/debug.log';
                                     <?php echo plugin_lang_get('enable_heartbeat'); ?>
                                 </th>
                                 <td>
-                                    <select name="enable_heartbeat">
+                                    <select name="<?php echo $enableHeartBeat;?>">
                                         <option value="<?php echo OFF ?>"
-                                            <?php if ( plugin_config_get('enable_heartbeat') == OFF  ) echo 'selected="selected"';?>>
+                                            <?php if ( plugin_config_get($enableHeartBeat) == OFF  ) echo 'selected="selected"';?>>
                                             <?php echo plugin_lang_get('off'); ?>
                                         </option>
                                         <option value="<?php echo ON ?>"
-                                            <?php if ( plugin_config_get('enable_heartbeat') == ON  ) echo 'selected="selected"';?>>
+                                            <?php if ( plugin_config_get($enableHeartBeat) == ON  ) echo 'selected="selected"';?>>
                                             <?php echo plugin_lang_get('on'); ?>
                                         </option>
                                     </select>
@@ -102,13 +104,13 @@ $logFile = dirname(__FILE__) . '/../logs/debug.log';
                                     <?php echo plugin_lang_get('enable_debug'); ?>
                                 </th>
                                 <td>
-                                    <select name="enable_debug">
+                                    <select name="<?php echo $enableDebug; ?>">
                                         <option value="<?php echo OFF ?>"
-                                            <?php if ( plugin_config_get('enable_debug') == OFF  ) echo 'selected="selected"';?>>
+                                            <?php if ( plugin_config_get($enableDebug) == OFF  ) echo 'selected="selected"';?>>
                                             <?php echo plugin_lang_get('off'); ?>
                                         </option>
                                         <option value="<?php echo ON ?>"
-                                            <?php if ( plugin_config_get('enable_debug') == ON  ) echo 'selected="selected"';?>>
+                                            <?php if ( plugin_config_get($enableDebug) == ON  ) echo 'selected="selected"';?>>
                                             <?php echo plugin_lang_get('on'); ?>
                                         </option>
                                     </select>

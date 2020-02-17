@@ -62,7 +62,7 @@ foreach ($crons as $plugin => $function) {
  */
 function logDebug($message)
 {
-    if( plugin_config_get('enable_debug')){
+    if( plugin_config_get(HhCronManagerPlugin::CONFIGURATION_KEY_ENABLE_DEBUG)){
         file_put_contents(
             dirname(__FILE__).'/../logs/debug.log',
             date('Y-m-d H:i:s').' '.$message."\n",
