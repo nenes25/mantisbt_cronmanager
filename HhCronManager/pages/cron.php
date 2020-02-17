@@ -35,22 +35,38 @@ foreach ($crons as $plugin => $function) {
     foreach ( $function as $tasks) {
 
         foreach ($tasks as $task) {
-           echo "Evaluate task ".$task['code'].' for plugin '.$task['plugin'].'<br />';
+           logDebug("Evaluate task ".$task['code'].' for plugin '.$task['plugin']);
             try {
                 if (Expression::isDue($task['frequency'])) {
-                    echo "Running task ".$task['code'].' for plugin '.$task['plugin'].'<br />';
+                    logDebug("Running task ".$task['code'].' for plugin '.$task['plugin']);
                     $curl = new Curl();
-                    $t_url = $baseUrl . plugin_page($task['url'], false, $task['plugin']);
-                    $curl->get($t_url);
+                    $t_url = $baseUrl . plugin_page($task['url'], false, str_replace('Plugin','',$task['plugin']));
+                    logDebug("Opening url ".$t_url);
+                    $content = $curl->get($t_url);
                     if ($curl->error) {
                         throw new Exception('Error: url ' . $t_url . ' is not valid');
                     }
                 }
             } catch (UnexpectedValueException $e) {
-                echo 'Invalid cron schedule ' . $task;
+                logDebug('ERROR : Invalid cron schedule ' . $task);
             } catch (Exception $e) {
-                echo $e->getMessage();
+                logDebug('ERROR :'.$e->getMessage());
             }
         }
+    }
+}
+
+/**
+ * Affichage du message de debug
+ * @param $message
+ */
+function logDebug($message)
+{
+    if( plugin_config_get('enable_debug')){
+        file_put_contents(
+            dirname(__FILE__).'/../logs/debug.log',
+            date('Y-m-d H:i:s').' '.$message."\n",
+            FILE_APPEND
+        );
     }
 }

@@ -6,6 +6,9 @@ $s_plugin_HhCronManager_menu_title = 'Gestion des tâches planifiées';
 $s_plugin_HhCronManager_config_title = 'Gestion des tâches planifiées';
 $s_plugin_HhCronManager_config_description = 'Ce plugin vous permets de gérer les tâches planifiées de l\'ensemble des modules en un seul endroit.<br />
 Pour le configurer il faut ajouter la tâche planifiée suivante dans votre crontab : <br /> * * * * * wget -q %s -o /dev/null -O /dev/null';
+$s_plugin_HhCronManager_config_heartbeat = "Tâche de crontrôle";
+$s_plugin_HhCronManager_config_last_run = "Dernière exécution : <strong>%s</strong>";
+$s_plugin_HhCronManager_config_no_heartbeat_log = "Aucun log d'exécution existant";
 $s_plugin_HhCronManager_config_plugin = "Configurer le plugin";
 $s_plugin_HhCronManager_enable_heartbeat = "Activer la tâche cron de contrôle";
 $s_plugin_HhCronManager_enable_heartbeat_description = "Active une tâche par défaut pour vérifier que les crons tournent correctement";

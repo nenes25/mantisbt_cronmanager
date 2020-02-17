@@ -42,6 +42,31 @@ $logFile = dirname(__FILE__) . '/../logs/debug.log';
                     </div>
                 </div>
 
+                <?php if (plugin_config_get('enable_heartbeat')): ?>
+                    <div class="widget-box widget-color-blue2" style="margin-top:20px;">
+                        <div class="widget-header widget-header-small">
+                            <h4 class="widget-title lighter">
+                                <?php echo plugin_lang_get('config_heartbeat') ?>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="widget-main no-padding">
+                        <?php
+                        $heartLog = dirname(__FILE__) . '/../logs/heartbeat.log';
+                        if (is_file($heartLog)) {
+                            $last_run = file_get_contents($heartLog);
+                            echo "<div class=\"alert alert-success\">";
+                            echo sprintf(plugin_lang_get('config_last_run'), $last_run);
+                            echo "</div>";
+                        } else {
+                            echo "<div class=\"alert alert-danger\">";
+                            echo plugin_lang_get('config_no_heartbeat_log');
+                            echo "</div>";
+                        }
+                        ?>
+                    </div>
+                <?php endif; ?>
+
                 <form action="<?php echo plugin_page('config_edit') ?>" method="post" class="form">
                     <?php echo form_security_field(plugin_get_current() . '_config') ?>
                     <div class="widget-box widget-color-blue2" style="margin-top:20px;">

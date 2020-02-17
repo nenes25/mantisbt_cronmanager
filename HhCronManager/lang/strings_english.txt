@@ -6,6 +6,9 @@ $s_plugin_HhCronManager_menu_title = 'Manage cron tasks';
 $s_plugin_HhCronManager_config_title = 'Cron Manager';
 $s_plugin_HhCronManager_config_description = 'This plugin allows you to manage the cron of your module in a central place.<br />
 In order to make it work please add the folowing task in your crontab : <br /> * * * * * wget -q %s -o /dev/null -O /dev/null';
+$s_plugin_HhCronManager_config_heartbeat = "Heartbeat task";
+$s_plugin_HhCronManager_config_last_run = "Last execution : <strong>%s</strong>";
+$s_plugin_HhCronManager_config_no_heartbeat_log = "No existing logs";
 $s_plugin_HhCronManager_config_plugin = "Configure plugin";
 $s_plugin_HhCronManager_enable_heartbeat = "Enable hearbeat cron task";
 $s_plugin_HhCronManager_enable_heartbeat_description = "Enable a cron task which ensure cron are working";
