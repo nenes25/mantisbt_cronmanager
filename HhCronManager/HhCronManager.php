@@ -129,11 +129,14 @@ class HhCronManagerPlugin extends MantisPlugin
      */
     public function collect_cron($eventName)
     {
+
+        $pluginName = str_replace('Plugin','',get_class($this));
+
         if (plugin_config_get(self::CONFIGURATION_KEY_ENABLE_HEARTBEAT ) === ON) {
             return [
                 [
-                    'plugin' => get_class($this),
-                    'code' => get_class($this) . '_heartbeat',#unique code
+                    'plugin' => $pluginName,
+                    'code' => $pluginName . '_heartbeat',#unique code
                     'frequency' => '* * * * * *',#cron expression
                     'description' => plugin_lang_get('enable_heartbeat_description'),
                     'url' => 'heartbeat',#plugin page name
