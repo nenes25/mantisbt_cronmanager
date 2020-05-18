@@ -31,7 +31,7 @@ class HhCronManagerPlugin extends MantisPlugin
         $this->description = plugin_lang_get('description');
         $this->page = 'config.php';
 
-        $this->version = '0.1.0';
+        $this->version = '0.1.1';
         $this->requires = array(
             'MantisCore' => '2.0.0',
         );
@@ -60,7 +60,7 @@ class HhCronManagerPlugin extends MantisPlugin
     public function hooks()
     {
         $t_hooks = array(
-            'EVENT_MENU_MAIN' => 'main_menu',
+            'EVENT_MENU_MANAGE' => 'menu_manage',
             'EVENT_PLUGIN_HHCRONMANAGER_COLLECT_CRON' => 'collect_cron'
         );
         return $t_hooks;
@@ -108,18 +108,13 @@ class HhCronManagerPlugin extends MantisPlugin
     }
 
     /**
-     * Display in main menu
+     * Display in manage menu
      */
-    public function main_menu()
+    public function menu_manage()
     {
-        return array(
-            array(
-                'title' => plugin_lang_get('menu_title'),
-                'access_level' => ADMINISTRATOR,
-                'url' => plugin_page('config'),
-                'icon' => 'fa-info'
-            ),
-        );
+        $page = plugin_page( "config" );
+        $label = plugin_lang_get( "menu_title" );
+        return "<a href=\"{$page}\">{$label}</a>";
     }
 
     /**
